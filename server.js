@@ -2,21 +2,21 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const PORT = 3006;
 
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+// app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 3306,
     user: 'root',
-    password: '',
+    password: 'ineedanap',
     database: 'employee_db',
   });
   
   connection.connect(err => {
     if (err) throw err;
-    console.log("WELCOME TO PAWNEE CITY HALL EMPLOYEE TRACKER");
-    startMenu();
+    console.log("Welcome to the Company's database:");
+    promptMenu();
   });
 
 const promptMenu = () => {
@@ -35,21 +35,26 @@ const promptMenu = () => {
         ]
     }).then(answer => {
         if(answer.direction === 'View all departments'){
-            addManager()
+            viewDepartment()
         } else if (answer.direction === 'View all roles') {
-            addEngineer()
+            viewRoles()
         } else if (answer.direction === 'View all employees') {
-            addIntern()
+            viewEmployees()
         } else if (answer.direction === 'Add a department') {
-            addIntern()
+            addDepartment()
         }else if (answer.direction === 'Add a role') {
-            addIntern()
+            addRole()
         }else if (answer.direction === 'Add an employee') {
-            addIntern()
+            addEmployee()
         }else if (answer.direction === 'Update an employee role') {
-            addIntern()
+            updateEmployee()
         } else {
-            writeHTML();
+            connection.end();
         }
 })
 };
+
+const viewDepartment = () => {
+
+    promptMenu();
+}
