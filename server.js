@@ -104,10 +104,12 @@ const addRole = async () => {
 const addEmployee = () => {
     inquirer.prompt([
         {type: 'input', name: 'first_name', message: 'Please enter the employees first name:'},
-        {type: 'input', name: 'last_name', message: 'Please enter the employees last name:'}
+        {type: 'input', name: 'last_name', message: 'Please enter the employees last name:'},
+        {type: 'input', name: 'role_id', message: 'Please enter the role id number:'},
+        {type: 'input', name: 'manager_id', message: 'Please enter the manager id number:'}
     ])
-    .then(({first_name, last_name}) => {
-        let newEmployee = {first_name, last_name}
+    .then(({first_name, last_name, role_id, manager_id}) => {
+        let newEmployee = {first_name, last_name, role_id, manager_id}
         connection.promise().query('INSERT INTO employee VALUES (?)', newEmployee)
         .then(dbData => {
             console.log(dbData)
