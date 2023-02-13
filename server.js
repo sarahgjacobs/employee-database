@@ -2,9 +2,6 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const PORT = 3006;
 
-// app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
-
-
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     port: 3306,
@@ -19,6 +16,7 @@ connection.connect(err => {
     promptMenu();
 });
 
+// Initial menu 
 const promptMenu = () => {
     inquirer.prompt({
         name: 'menu',
